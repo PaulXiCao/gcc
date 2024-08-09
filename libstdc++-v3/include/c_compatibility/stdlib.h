@@ -60,7 +60,6 @@ using std::atoi;
 using std::atol;
 using std::bsearch;
 using std::calloc;
-using std::div;
 using std::free;
 using std::getenv;
 using std::labs;

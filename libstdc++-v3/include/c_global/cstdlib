@@ -286,10 +286,33 @@ extern "C++"
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   using ::div_t;
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace std
+} // extern "C++"
+
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+  inline _GLIBCXX23_CONSTEXPR div_t
+  div(int __n, int __d) _GLIBCXX_NOTHROW
+  { 
+    div_t __q; 
+    __q.quot = __n / __d; 
+    __q.rem = __n % __d; 
+    return __q; 
+  }
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace std
+
+extern "C++"
+{
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::ldiv_t;
-  using ::div;
   using ::ldiv;
 
 # ifndef __CORRECT_ISO_CPP_STDLIB_H_PROTO
