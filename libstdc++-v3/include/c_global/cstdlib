@@ -289,6 +289,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::div_t;
   using ::ldiv_t;
 
+#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+  using ::lldiv_t;
+#endif
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 } // extern "C++"
@@ -311,6 +315,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline _GLIBCXX23_CONSTEXPR 
   ldiv_t div(long int __n, long int __d) { return __div<ldiv_t>(__n, __d); }
 
+#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+  inline _GLIBCXX23_CONSTEXPR 
+  lldiv_t div(long long int __n, long long int __d) { return __div<lldiv_t>(__n, __d); }
+#endif
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
@@ -332,12 +341,6 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  using ::lldiv_t;
-
-  inline lldiv_t
-  div(long long __n, long long __d)
-  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
-
   using ::lldiv;
 #endif
 
@@ -347,8 +350,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 namespace std
 {
 #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  using ::__gnu_cxx::lldiv_t;
-  using ::__gnu_cxx::div;
   using ::__gnu_cxx::lldiv;
 #endif
 } // namespace std

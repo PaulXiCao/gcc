@@ -46,4 +46,7 @@ int main()
 {
   check_div<int, std::div_t>();
   check_div<long, std::ldiv_t>();
+#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+  check_div<long long, std::lldiv_t>();
+#endif
 }
