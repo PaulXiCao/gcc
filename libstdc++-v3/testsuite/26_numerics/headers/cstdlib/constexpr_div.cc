@@ -26,11 +26,13 @@
 void test_div_int_int()
 {
   const std::div_t a = std::div(42, 5);
-  VERIFY( a.quot == 8 );
-  VERIFY( a.rem  == 2 );
+  VERIFY(a.quot == 8);
+  VERIFY(a.rem == 2);
 
 #if __cplusplus >= 202302L
-  static_assert(std::div(42, 5) == std::div_t{.quot = 8, .rem = 2});
+  constexpr std::div_t b = std::div(42, 5);
+  static_assert(b.quot == 8);
+  static_assert(b.rem == 2);
 #endif
 }
 
