@@ -23,20 +23,27 @@
 #include <cstdlib>
 #include <testsuite_hooks.h>
 
-void test_div_int_int()
+template <class Int, class Div_t>
+void check_div()
 {
-  const std::div_t a = std::div(42, 5);
-  VERIFY(a.quot == 8);
-  VERIFY(a.rem == 2);
+  constexpr Int n = 42;
+  constexpr Int d = 5;
+  constexpr Int quot = 8;
+  constexpr Int rem = 2;
+
+  const Div_t a = std::div(n, d);
+  VERIFY(a.quot == quot);
+  VERIFY(a.rem == rem);
 
 #if __cplusplus >= 202302L
-  constexpr std::div_t b = std::div(42, 5);
-  static_assert(b.quot == 8);
-  static_assert(b.rem == 2);
+  constexpr Div_t b = std::div(n, d);
+  static_assert(b.quot == quot);
+  static_assert(b.rem == rem);
 #endif
 }
 
 int main()
 {
-  test_div_int_int();
+  check_div<int, std::div_t>();
+  check_div<long, std::ldiv_t>();
 }

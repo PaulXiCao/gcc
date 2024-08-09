@@ -287,6 +287,7 @@ namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::div_t;
+  using ::ldiv_t;
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
@@ -307,6 +308,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline _GLIBCXX23_CONSTEXPR 
   div_t div(int __n, int __d) { return __div<div_t>(__n, __d); }
 
+  inline _GLIBCXX23_CONSTEXPR 
+  ldiv_t div(long int __n, long int __d) { return __div<ldiv_t>(__n, __d); }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
@@ -315,14 +319,7 @@ extern "C++"
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
-  using ::ldiv_t;
   using ::ldiv;
-
-# ifndef __CORRECT_ISO_CPP_STDLIB_H_PROTO
-  inline ldiv_t
-  div(long __i, long __j) _GLIBCXX_NOTHROW { return ldiv(__i, __j); }
-# endif
-
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
