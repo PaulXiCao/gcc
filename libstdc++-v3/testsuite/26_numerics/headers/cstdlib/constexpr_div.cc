@@ -23,15 +23,18 @@
 #include <cstdlib>
 #include <testsuite_hooks.h>
 
-template <class Int, class Div_t>
-void check_div()
+template <class Callable>
+void check()
 {
-  constexpr Int n = 42;
-  constexpr Int d = 5;
-  constexpr Int quot = 8;
-  constexpr Int rem = 2;
+  typedef typename Callable::Int Int;
+  typedef typename Callable::Div_t Div_t;
 
-  const Div_t a = std::div(n, d);
+  _GLIBCXX_CONSTEXPR Int n = 42;
+  _GLIBCXX_CONSTEXPR Int d = 5;
+  _GLIBCXX_CONSTEXPR Int quot = 8;
+  _GLIBCXX_CONSTEXPR Int rem = 2;
+
+  const Div_t a = Callable()(n, d);
   VERIFY(a.quot == quot);
   VERIFY(a.rem == rem);
 
@@ -42,11 +45,34 @@ void check_div()
 #endif
 }
 
+template <class Int_, class Div_t_>
+struct Call_div {
+  typedef Int_ Int;
+  typedef Div_t_ Div_t;
+  _GLIBCXX_CONSTEXPR Div_t operator()(Int n, Int d) const { return std::div(n, d); }
+};
+
+struct Call_ldiv {
+  typedef long Int;
+  typedef std::ldiv_t Div_t;
+  _GLIBCXX_CONSTEXPR Div_t operator()(Int n, Int d) const { return std::ldiv(n, d); }
+};
+
+#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+struct Call_lldiv {
+  typedef long long Int;
+  typedef std::lldiv_t Div_t;
+  _GLIBCXX_CONSTEXPR Div_t operator()(Int n, Int d) const { return std::lldiv(n, d); }
+};
+#endif
+
 int main()
 {
-  check_div<int, std::div_t>();
-  check_div<long, std::ldiv_t>();
+  check<Call_div<int, std::div_t> >();
+  check<Call_div<long, std::ldiv_t> >();
+  check<Call_ldiv>();
 #ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  check_div<long long, std::lldiv_t>();
+  check<Call_div<long long, std::lldiv_t> >();
+  check<Call_lldiv>();
 #endif
 }

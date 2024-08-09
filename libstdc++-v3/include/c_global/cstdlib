@@ -288,11 +288,9 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::div_t;
   using ::ldiv_t;
-
 #ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
   using ::lldiv_t;
 #endif
-
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 } // extern "C++"
@@ -300,6 +298,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
+
   template <class _Div_t, class _Int>
   _GLIBCXX23_CONSTEXPR _Div_t __div(_Int __n, _Int __d)
   { 
@@ -309,54 +308,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     return __q; 
   }
 
-  inline _GLIBCXX23_CONSTEXPR 
-  div_t div(int __n, int __d) { return __div<div_t>(__n, __d); }
+  inline _GLIBCXX23_CONSTEXPR div_t div(int __n, int __d) { return __div<div_t>(__n, __d); }
 
-  inline _GLIBCXX23_CONSTEXPR 
-  ldiv_t div(long int __n, long int __d) { return __div<ldiv_t>(__n, __d); }
+  inline _GLIBCXX23_CONSTEXPR ldiv_t div(long int __n, long int __d) { return __div<ldiv_t>(__n, __d); }
+
+  inline _GLIBCXX23_CONSTEXPR ldiv_t ldiv(long int __n, long int __d) { return std::div(__n, __d); }
 
 #ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  inline _GLIBCXX23_CONSTEXPR 
-  lldiv_t div(long long int __n, long long int __d) { return __div<lldiv_t>(__n, __d); }
+  inline _GLIBCXX23_CONSTEXPR lldiv_t div(long long int __n, long long int __d) { return __div<lldiv_t>(__n, __d); }
+
+  inline _GLIBCXX23_CONSTEXPR lldiv_t lldiv(long long int __n, long long int __d) { return std::div(__n, __d); }
 #endif
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
-extern "C++"
-{
-namespace std _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-  using ::ldiv;
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
-
-#if _GLIBCXX_USE_C99_STDLIB
-
-#undef lldiv
-
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-#if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  using ::lldiv;
-#endif
-
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __gnu_cxx
-
-namespace std
-{
-#if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  using ::__gnu_cxx::lldiv;
-#endif
-} // namespace std
-
-#endif // _GLIBCXX_USE_C99_STDLIB
-
-} // extern "C++"
 #endif // _GLIBCXX_HOSTED
 
 #endif // _GLIBCXX_CSTDLIB

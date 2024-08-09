@@ -63,7 +63,6 @@ using std::calloc;
 using std::free;
 using std::getenv;
 using std::labs;
-using std::ldiv;
 using std::malloc;
 #ifdef _GLIBCXX_HAVE_MBSTATE_T
 using std::mblen;
