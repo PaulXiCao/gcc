@@ -295,14 +295,17 @@ _GLIBCXX_END_NAMESPACE_VERSION
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
-  inline _GLIBCXX23_CONSTEXPR div_t
-  div(int __n, int __d) _GLIBCXX_NOTHROW
+  template <class _Div_t, class _Int>
+  _GLIBCXX23_CONSTEXPR _Div_t __div(_Int __n, _Int __d)
   { 
-    div_t __q; 
+    _Div_t __q; 
     __q.quot = __n / __d; 
     __q.rem = __n % __d; 
     return __q; 
   }
+
+  inline _GLIBCXX23_CONSTEXPR 
+  div_t div(int __n, int __d) { return __div<div_t>(__n, __d); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
