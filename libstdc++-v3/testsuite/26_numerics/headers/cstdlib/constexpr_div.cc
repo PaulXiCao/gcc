@@ -58,7 +58,7 @@ struct Call_ldiv {
   _GLIBCXX_CONSTEXPR Div_t operator()(Int n, Int d) const { return std::ldiv(n, d); }
 };
 
-#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+#if __cplusplus >= 201103L
 struct Call_lldiv {
   typedef long long Int;
   typedef std::lldiv_t Div_t;
@@ -71,7 +71,7 @@ int main()
   check<Call_div<int, std::div_t> >();
   check<Call_div<long, std::ldiv_t> >();
   check<Call_ldiv>();
-#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+#if __cplusplus >= 201103L
   check<Call_div<long long, std::lldiv_t> >();
   check<Call_lldiv>();
 #endif

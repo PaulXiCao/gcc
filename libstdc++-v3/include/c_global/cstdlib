@@ -257,8 +257,12 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::div_t;
   using ::ldiv_t;
-#if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-  using ::lldiv_t;
+#if __cplusplus >= 201103L
+  struct lldiv_t
+  {
+    long long int quot;		/* Quotient.  */
+    long long int rem;		/* Remainder.  */
+  };
 #endif
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
@@ -289,7 +293,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   ldiv_t ldiv(long int __n, long int __d) _GLIBCXX_NOTHROW
   { return std::div(__n, __d); }
 
-#if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+#if __cplusplus >= 201103L
   inline _GLIBCXX23_CONSTEXPR
   lldiv_t div(long long int __n, long long int __d) _GLIBCXX_NOTHROW
   { return __div<lldiv_t>(__n, __d); }
