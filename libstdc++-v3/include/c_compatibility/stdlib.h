@@ -60,9 +60,11 @@ using std::atoi;
 using std::atol;
 using std::bsearch;
 using std::calloc;
+using std::div;
 using std::free;
 using std::getenv;
 using std::labs;
+using std::ldiv;
 using std::malloc;
 #ifdef _GLIBCXX_HAVE_MBSTATE_T
 using std::mblen;
