@@ -96,12 +96,10 @@ namespace std
 #undef atol
 #undef bsearch
 #undef calloc
-// #undef div
 #undef exit
 #undef free
 #undef getenv
 #undef labs
-// #undef ldiv
 #undef malloc
 #undef mblen
 #undef mbstowcs
@@ -127,10 +125,6 @@ extern "C++"
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // using ::div_t;
-  // using ::ldiv_t;
-
   using ::abort;
 #if __cplusplus >= 201703L && defined(_GLIBCXX_HAVE_ALIGNED_ALLOC)
   using ::aligned_alloc;
@@ -146,12 +140,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::atol;
   using ::bsearch;
   using ::calloc;
-  // using ::div;
   using ::exit;
   using ::free;
   using ::getenv;
   using ::labs;
-  // using ::ldiv;
   using ::malloc;
 #ifdef _GLIBCXX_HAVE_MBSTATE_T
   using ::mblen;
@@ -175,13 +167,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::wcstombs;
   using ::wctomb;
 #endif // _GLIBCXX_USE_WCHAR_T
-
-// #ifndef __CORRECT_ISO_CPP_STDLIB_H_PROTO
-//   inline ldiv_t
-//   div(long __i, long __j) _GLIBCXX_NOTHROW { return ldiv(__i, __j); }
-// #endif
-
-
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace
 
@@ -189,7 +174,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #undef _Exit
 #undef llabs
-// #undef lldiv
 #undef atoll
 #undef strtoll
 #undef strtoull
@@ -199,10 +183,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-// #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-//   using ::lldiv_t;
-// #endif
 #if _GLIBCXX_USE_C99_CHECK || _GLIBCXX_USE_C99_DYNAMIC
   extern "C" void (_Exit)(int) _GLIBCXX_NOTHROW _GLIBCXX_NORETURN;
 #endif
@@ -212,12 +192,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
   using ::llabs;
-
-//   inline lldiv_t
-//   div(long long __n, long long __d)
-//   { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
-
-//   using ::lldiv;
 #endif
 
 #if _GLIBCXX_USE_C99_LONG_LONG_CHECK || _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
@@ -240,14 +214,9 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 namespace std
 {
-// #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
-//   using ::__gnu_cxx::lldiv_t;
-// #endif
   using ::__gnu_cxx::_Exit;
 #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
   using ::__gnu_cxx::llabs;
-  // using ::__gnu_cxx::div;
-  // using ::__gnu_cxx::lldiv;
 #endif
   using ::__gnu_cxx::atoll;
   using ::__gnu_cxx::strtof;
@@ -288,7 +257,7 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::div_t;
   using ::ldiv_t;
-#ifndef _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+#if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
   using ::lldiv_t;
 #endif
 _GLIBCXX_END_NAMESPACE_VERSION
