@@ -18,7 +18,7 @@
 // Math-related cstdlib bits are not freestanding.
 // { dg-require-effective-target hosted }
 
-// 17.4.1.2 Headers, cstdlib
+// 17.2.2 Headers, cstdlib
 
 #include <cstdlib>
 #include <testsuite_hooks.h>
