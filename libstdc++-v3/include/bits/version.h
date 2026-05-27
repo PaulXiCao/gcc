@@ -2675,4 +2675,14 @@
 #endif /* !defined(__cpp_lib_is_structural) */
 #undef __glibcxx_want_is_structural
 
+#if !defined(__cpp_lib_hazard_pointer)
+# if (__cplusplus >  202302L)
+#  define __glibcxx_hazard_pointer 202306L
+#  if defined(__glibcxx_want_all) || defined(__glibcxx_want_hazard_pointer)
+#   define __cpp_lib_hazard_pointer 202306L
+#  endif
+# endif
+#endif /* !defined(__cpp_lib_hazard_pointer) */
+#undef __glibcxx_want_hazard_pointer
+
 #undef __glibcxx_want_all

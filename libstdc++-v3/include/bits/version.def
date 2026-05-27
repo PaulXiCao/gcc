@@ -2410,6 +2410,14 @@ ftms = {
   };
 };
 
+ftms = {
+  name = hazard_pointer;
+  values = {
+    v = 202306;
+    cxxmin = 26;
+  };
+};
+
 // Standard test specifications.
 stds[97] = ">= 199711L";
 stds[03] = ">= 199711L";
