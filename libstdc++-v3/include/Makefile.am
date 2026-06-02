@@ -79,6 +79,7 @@ std_headers = \
 	${std_srcdir}/forward_list \
 	${std_srcdir}/fstream \
 	${std_srcdir}/future \
+	${std_srcdir}/hazard_pointer \
 	${std_srcdir}/inplace_vector \
 	${std_srcdir}/iomanip \
 	${std_srcdir}/ios \
