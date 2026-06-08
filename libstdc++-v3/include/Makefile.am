@@ -79,6 +79,7 @@ std_headers = \
 	${std_srcdir}/forward_list \
 	${std_srcdir}/fstream \
 	${std_srcdir}/future \
+	${std_srcdir}/hazard_pointer \
 	${std_srcdir}/inplace_vector \
 	${std_srcdir}/iomanip \
 	${std_srcdir}/ios \
@@ -231,6 +232,7 @@ bits_headers = \
 	${bits_srcdir}/gslice_array.h \
 	${bits_srcdir}/hashtable.h \
 	${bits_srcdir}/hashtable_policy.h \
+	${bits_srcdir}/hazard_ptr.h \
 	${bits_srcdir}/indirect.h \
 	${bits_srcdir}/indirect_array.h \
 	${bits_srcdir}/ios_base.h \
